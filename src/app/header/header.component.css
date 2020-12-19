@@ -1,0 +1,35 @@
+span {
+  padding-right: 1rem;
+}
+
+mat-sidenav-container {
+  height: 100%
+}
+
+mat-sidenav, mat-sidenav-content {
+  padding: 1rem;
+}
+
+mat-sidenav {
+  background-color: aqua;
+  width: 200px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+}
+
+.menu-icon {
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+/* .navbar {
+  justify-content: space-between;
+} */
+
+
+.spacer {
+  flex: 1 1 auto;
+}

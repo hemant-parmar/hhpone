@@ -1,0 +1,11 @@
+{
+  "emailFrom": "hemant@fairvalueconsultancy.com",
+  "smtpOptions": {
+    "host": "smtp.fairvalueconsultancy.com",
+    "port": 587,
+    "auth": {
+      "user": "hemant@fairvalueconsultancy.com",
+      "pass": ""
+    }
+  }
+}

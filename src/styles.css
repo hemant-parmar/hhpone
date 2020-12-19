@@ -1,0 +1,252 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*
+  =============
+  Variables
+  =============
+*/
+:root {
+  --primaryColor: #3f51b5;
+  --mainBlack: #222;
+  --mainWhite: #fff;
+  --offWhite: #f7f7f7;
+  --darkGrey: #afafaf;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 0.2rem;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-form-field {
+  margin-right: 1%;
+}
+
+table{
+  width: 94%;
+  margin: 1rem;
+  border: none;
+ }
+
+th.mat-header-cell {
+  font-weight: bold;
+  color: var(--primaryColor);
+  border: none;
+}
+
+td.mat-cell {
+   border: none;
+ }
+
+/* th {
+  font-weight: bold;
+  color: #3f51b5;
+} */
+
+tr.mat-header-row {
+  height: 1.5rem;
+}
+
+tr.mat-row {
+  height: 0.75rem;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+.container {
+  margin: 1rem;
+}
+
+.doc-container {
+  margin: auto;
+  max-width: 767px;
+  text-align: justify;
+}
+
+.doc-container table, th, td {
+  border: 1px solid black;
+}
+
+.doc-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.exp-panel {
+  margin: 1rem 0;
+  background: rgb(176, 220, 250);
+}
+
+.form-150-500 {
+  margin: auto;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.formTitleInput {
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  color: var(--primaryColor);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.m-1rem {
+  margin: 1rem;
+}
+.m-2rem {
+  margin: 2rem;
+}
+.m-3rem {
+  margin: 3rem;
+}
+
+.ml-1rem {
+  margin-left: 1rem;
+}
+
+.ml-2rem {
+  margin-left: 2rem;
+}
+.ml-3rem {
+  margin-left: 3rem;
+}
+
+.mr-1rem {
+  margin-right: 1rem;
+}
+
+.mt-0-5rem {
+  margin-top: 0.5rem;
+}
+
+.mt-1rem {
+  margin-top: 1rem;
+}
+
+.on-667-w50 {
+  width: 100%
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  color: var(--primaryColor);
+}
+
+.primary-bold {
+  color: var(--primaryColor);
+  font-weight: bold;
+}
+
+.redBold {
+  color:red;
+  font-weight: bold;
+}
+
+.spinner-container {
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  display: flex;
+  height: 2vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.subTitle {
+  font-size: medium;
+  font-weight: 500;
+}
+
+.table-container {
+  margin: 1rem 0;
+  width: 100%;
+  overflow: auto;
+}
+
+.table-50-container {
+  margin: 1rem;
+  width: 45%;
+  overflow: auto;
+}
+
+.tab-content {
+  display: block;
+}
+
+.tab-content-col1 {
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.tab-content-col2 {
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.title {
+  padding: 0 1rem;
+  background: rgb(129, 205, 255);
+}
+
+.w-1rem {
+  width: 1rem;
+}
+
+.w-2rem {
+  width: 2rem;
+}
+
+.w-3rem {
+  width: 3rem;
+}
+
+.w-5rem {
+  width: 5rem;
+}
+
+.w-8rem {
+  width: 8rem;
+}
+
+.w-12rem {
+  width: 12rem;
+}
+
+.w-90per {
+  width: 90%
+}
+.w-80per {
+  width: 80%
+}
+.w-70per {
+  width: 70%
+}
+.w-50per {
+  width: 50%
+}

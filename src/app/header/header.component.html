@@ -1,0 +1,58 @@
+<mat-toolbar color="primary" class="navbar app-toolbar">
+    <mat-icon class="menu-icon" [matMenuTriggerFor]="menu">menu</mat-icon>
+    <span style="cursor: pointer;" routerLink="/">Fair Value Consultancy</span>
+    <span class="spacer"></span>
+    <span style="cursor: pointer; font-weight: normal; font-size:medium;" routerLink="/login">Login</span>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="">
+    <mat-icon>analytics</mat-icon>
+    <span>Dashboard</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="clients">
+    <mat-icon>people_outline</mat-icon>
+    <span>Clients</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="csDocs">
+    <mat-icon>grading</mat-icon>
+    <span>CS Docs</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="invoices">
+    <mat-icon>request_quote</mat-icon>
+    <span>Invoices</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="employees">
+    <mat-icon>assignment_ind</mat-icon>
+    <span>Employees</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="admin">
+    <mat-icon>admin_panel_settings</mat-icon>
+    <span>Admin</span>
+  </button>
+</mat-menu>
+
+<mat-menu #clients="matMenu">
+  <button mat-menu-item routerLink="client/list">Client List</button>
+  <button mat-menu-item routerLink="client/add">Add Client</button>
+</mat-menu>
+
+<mat-menu #csDocs="matMenu">
+  <button mat-menu-item routerLink="create-doc">Create a Document</button>
+</mat-menu>
+
+<mat-menu #employees="matMenu">
+  <button mat-menu-item routerLink="employees">Employee List</button>
+  <button mat-menu-item routerLink="employees/edit">Add Employee</button>
+</mat-menu>
+
+<mat-menu #invoices="matMenu">
+  <button mat-menu-item>Invoice List</button>
+  <button mat-menu-item>Add Invoice</button>
+  <button mat-menu-item>Receivables</button>
+</mat-menu>
+
+<mat-menu #admin="matMenu">
+  <button mat-menu-item routerLink="admin">Users</button>
+  <button mat-menu-item>Masters</button>
+</mat-menu>

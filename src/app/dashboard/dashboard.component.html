@@ -1,0 +1,12 @@
+<div>
+  <span class="ml-1rem mr-1rem pageTitle">Your Dashboard</span> This page is under construction.
+</div>
+<mat-grid-list cols="4" rowHeight="200px">
+  <mat-grid-tile
+      *ngFor="let tile of tiles"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [style.background]="tile.color">
+    <h2>{{tile.text}}</h2>
+  </mat-grid-tile>
+</mat-grid-list>

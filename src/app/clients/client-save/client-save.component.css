@@ -1,0 +1,49 @@
+
+.formTitleInput {
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  color: #3F51B5;
+  width: 600px;
+}
+
+
+@media screen and (min-width: 667px) {
+  .contacts-table {
+    margin: 0.2rem;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+  }
+
+  .on-667-w50 {
+    width: 49%;
+    max-width: 600px;
+    margin-right: 1%
+  }
+
+  .w-3rem {
+    width: 3rem;
+  }
+
+  .w-8rem {
+    width: 8rem;
+  }
+  .w-12rem {
+    width: 12rem;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+  .tab-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .tab-content-col2 {
+    margin-top: 1rem;
+  }
+
+}

@@ -1,0 +1,379 @@
+
+
+<div>
+  <span class="ml-1rem mr-1rem pageTitle">Prepare the Board Meeting Notice</span>
+</div>
+<hr>
+<form [formGroup]="form" class="container">
+  <div class="full-width title">
+    <div class="subTitle mr-1rem">
+      Preparing Board Meeting Notice for : {{ selectedClient }}
+    </div>
+  </div>
+
+  <h2>Prepare Meeting Schedule</h2>
+  <div class="ml-1rem">
+    <mat-form-field>
+      <mat-label>Meeting Serial number</mat-label>
+      <mat-hint>Enter only a number</mat-hint>
+      <input matInput type="text" formControlName="bmSrNo" placeholder="e.g. 36">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Meeting Date</mat-label>
+      <input matInput [matDatepicker]="DatePicker1"  formControlName="bmDate">
+      <mat-datepicker-toggle matSuffix [for]="DatePicker1"></mat-datepicker-toggle>
+      <mat-datepicker #DatePicker1></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Meeting Time</mat-label>
+      <mat-hint>e.g. 10:00 A.M.</mat-hint>
+      <input matInput type="text" formControlName="bmTime" placeholder="e.g. 10:00 A.M.">
+    </mat-form-field>
+    <!-- <mat-form-field> -->
+      <mat-checkbox color="warn" formControlName="isShortNotice"
+                class="mr-1rem">Short Notice</mat-checkbox>
+    <!-- </mat-form-field> -->
+  </div>
+  <br><br>
+  <div class="ml-2rem">
+    <mat-selection-list #bmnAddr [multiple]="false"
+      (selectionChange)="onBmAddrSelection(bmnAddr.selectedOptions.selected[0]?.value)">
+      <p style="text-decoration: underline;">
+        MEETING LOCATION (click an address to select from the below list or type a new one)
+      </p>
+      <mat-list-option *ngFor="let addr of bmAddrOptions" [value]="addr">
+        {{addr}}
+      </mat-list-option>
+    </mat-selection-list>
+    <p>
+      <mat-form-field class="w-80per">
+        <mat-label>Enter New Meeting Location</mat-label>
+        <textarea matInput formControlName="bmAddr"></textarea>
+      </mat-form-field>
+      &nbsp;
+      <button type="button" mat-raised-button color="primary"
+        (click)=addNewBmAddr()
+      >Add Location</button>
+    </p>
+
+    <p style="font-weight: bold;">
+      Selected Meeting Location: {{ selectedBmAddr }}
+    </p>
+  </div>
+
+  <hr>
+
+  <h2>Prepare Particulars</h2>
+  <p>Drag and drop available Topics into the Selected Topics box.</p>
+
+  <hr>
+
+  <div cdkDropListGroup>
+    <div class="example-container">
+      <h3 class="primary-bold" style="font-weight: bold;">COMPANY LAW MATTERS</h3>
+      <div
+        cdkDropList
+        [cdkDropListData]="compLawOptions"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of compLawOptions" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h3>Selected Topics</h3>
+      <div
+        cdkDropList
+        [cdkDropListData]="compLawMatters"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box-selected" *ngFor="let item of compLawMatters" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+  </div>
+  <p>
+    <mat-form-field class="w-90per">
+      <mat-label>Add New Topic</mat-label>
+      <textarea matInput placeholder="Write without Sr #"
+      formControlName="compLawTopic"></textarea>
+    </mat-form-field>
+    &nbsp;
+    <button type="button" mat-raised-button color="primary"
+      (click)=addCompLawTopic()
+    >Add Topic</button>
+  </p>
+
+  <hr>
+
+  <div cdkDropListGroup>
+    <div class="example-container">
+      <h3 class="primary-bold" style="font-weight: bold;">FINANCE & ACCOUNTS MATTERS</h3>
+      <div
+        cdkDropList
+        [cdkDropListData]="financeOptions"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of financeOptions" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h3>Selected Topics</h3>
+      <div
+        cdkDropList
+        [cdkDropListData]="financeMatters"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box-selected" *ngFor="let item of financeMatters" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+  </div>
+  <p>
+    <mat-form-field class="w-90per">
+      <mat-label>Add New Topic</mat-label>
+      <textarea matInput placeholder="Write without Sr #"
+      formControlName="financeTopic"></textarea>
+    </mat-form-field>
+    &nbsp;
+    <button type="button" mat-raised-button color="primary"
+      (click)=addFinanceTopic()
+    >Add Topic</button>
+  </p>
+
+  <hr>
+
+  <div cdkDropListGroup>
+    <div class="example-container">
+      <h3 class="primary-bold" style="font-weight: bold;">REGULATORY MATTERS</h3>
+      <div
+        cdkDropList
+        [cdkDropListData]="regulatoryOptions"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of regulatoryOptions" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h3>Selected Topics</h3>
+      <div
+        cdkDropList
+        [cdkDropListData]="regulatoryMatters"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box-selected" *ngFor="let item of regulatoryMatters" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+  </div>
+  <p>
+    <mat-form-field class="w-90per">
+      <mat-label>Add New Topic</mat-label>
+      <textarea matInput placeholder="Write without Sr #"
+      formControlName="regulatoryTopic"></textarea>
+    </mat-form-field>
+    &nbsp;
+    <button type="button" mat-raised-button color="primary"
+      (click)=addRegulatoryTopic()
+    >Add Topic</button>
+  </p>
+
+  <hr>
+
+  <div cdkDropListGroup>
+    <div class="example-container">
+      <h3 class="primary-bold" style="font-weight: bold;">BUSINESS MATTERS</h3>
+      <div
+        cdkDropList
+        [cdkDropListData]="businessOptions"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of businessOptions" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h3>Selected Topics</h3>
+      <div
+        cdkDropList
+        [cdkDropListData]="businessMatters"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box-selected" *ngFor="let item of businessMatters" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+  </div>
+  <p>
+    <mat-form-field class="w-90per">
+      <mat-label>Add New Topic</mat-label>
+      <textarea matInput placeholder="Write without Sr #"
+      formControlName="businessTopic"></textarea>
+    </mat-form-field>
+    &nbsp;
+    <button type="button" mat-raised-button color="primary"
+      (click)=addBusinessTopic()
+    >Add Topic</button>
+  </p>
+
+  <hr>
+  <br>
+
+  <h2>Signature Details</h2>
+  <div class="ml-1rem">
+    <mat-form-field>
+      <mat-label>Place</mat-label>
+      <input matInput type="text" formControlName="signPlace" placeholder="e.g. MUMBAI">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="DatePicker2"  formControlName="signDate">
+      <mat-datepicker-toggle matSuffix [for]="DatePicker2"></mat-datepicker-toggle>
+      <mat-datepicker #DatePicker2></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <hr>
+  <br>
+
+  <!-- Directors Table -->
+  <div class="ml-2rem">
+    <span class="mr-1rem subTitle">Directors List</span>
+    <div class="mat-elevation-z8">
+      <table class="w-90per" mat-table [dataSource]="dirDataSource" matSort #DirTableSort='matSort'>
+
+        <!-- fName Column -->
+        <ng-container matColumnDef="fName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.fName}} </td>
+        </ng-container>
+
+        <!-- lName Column -->
+        <ng-container matColumnDef="lName" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Surname </th>
+          <td mat-cell *matCellDef="let row"> {{row.lName}} </td>
+        </ng-container>  <!-- You are in Directors Table -->
+
+        <!-- Desig Column -->
+        <ng-container matColumnDef="desig">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-12rem"> Designation </th>
+          <td mat-cell *matCellDef="let row" > {{row.desig}} </td>
+        </ng-container>
+
+        <!-- email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-12rem"> Email </th>
+          <td mat-cell *matCellDef="let row" > {{row.email}} </td>
+        </ng-container>  <!-- You are in Directors Table -->
+
+        <!-- mobile1 Column -->
+        <ng-container matColumnDef="mobile1">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Mobile-1 </th>
+          <td mat-cell *matCellDef="let row"> {{row.mobile1}} </td>
+        </ng-container>
+
+        <!-- mobile2 Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-3rem">  </th>
+          <td mat-cell *matCellDef="let row">  </td>
+        </ng-container>  <!-- You are in Directors Table -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4" style="color: #c71919">No Director found</td>
+        </tr>
+      </table>  <!-- You are in Directors Table -->
+
+      <mat-paginator [pageSizeOptions]="[5, 10]"
+        #DirTablePaginator='matPaginator'></mat-paginator>
+    </div>  <!-- END of Div for only Directors Table -->
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <!-- Contacts Table -->
+  <div >
+    <p class="mr-1rem subTitle">Select Invitees from the below Contact List</p>
+    <div class="mat-elevation-z8 table-container">  <!-- You are in Contacts Table -->
+      <table mat-table [dataSource]="contDataSource" matSort #ContTableSort='matSort'>
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef class="w-3rem">
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- fName Column -->
+        <ng-container matColumnDef="fName" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.fName}} </td>
+        </ng-container>
+
+        <!-- lName Column -->
+        <ng-container matColumnDef="lName" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Surname </th>
+          <td mat-cell *matCellDef="let row"> {{row.lName}} </td>
+        </ng-container>  <!-- You are in Contacts Table -->
+
+        <!-- Desig Column -->
+        <ng-container matColumnDef="desig">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-12rem"> Designation </th>
+          <td mat-cell *matCellDef="let row" > {{row.desig}} </td>
+        </ng-container>
+
+        <!-- email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-12rem"> Email </th>
+          <td mat-cell *matCellDef="let row" > {{row.email}} </td>
+        </ng-container>  <!-- You are in Contacts Table -->
+
+        <!-- mobile1 Column -->
+        <ng-container matColumnDef="mobile1">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Mobile-1 </th>
+          <td mat-cell *matCellDef="let row" > {{row.mobile1}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4" style="color: #c71919">No contact found</td>
+        </tr>
+      </table>  <!-- You are in Contacts Table -->
+
+      <mat-paginator [pageSizeOptions]="[5, 10]"
+        #ContTablePaginator='matPaginator'></mat-paginator>
+    </div>  <!-- END of Div for only Cont Table -->
+  </div> <!-- END of outer Div for Cont Table -->
+</form>
+
+
+<div class="mt-1rem ml-2rem">
+  <button type="button" mat-raised-button color="primary" (click)="onSaveDoc()"
+    class="mr-1rem">Save Document</button>
+  &nbsp;
+  <button type="button" mat-raised-button color="warn" (click)="onPreviewPDF()"
+  class="mr-1rem">Preview PDF</button>
+  &nbsp;
+  <button type="button" mat-raised-button color="primary"
+  >Reset Document Options</button>
+  &nbsp;
+  <button type="button" mat-raised-button color="primary" routerLink="/"
+  >Create a New Document</button>
+</div>
+<br><br>

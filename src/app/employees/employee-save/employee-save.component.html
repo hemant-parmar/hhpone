@@ -1,0 +1,189 @@
+<div class="m-1rem">
+  <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+  <form [formGroup]="form">
+    <div class="title">
+      <div class="subTitle mr-1rem" [ngClass]="{redBold: editMode}">
+        {{ titleString }} Employee Data for: </div>
+      <mat-form-field class="w-5rem formTitleInput">
+        <mat-label>Title</mat-label>
+        <mat-select  matInput formControlName="title" required>
+          <mat-option value='Ms.'>Ms.</mat-option>
+          <mat-option value='Mr.'>Mr.</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="form.get('title').invalid" style="color: red">Required</mat-hint>
+      </mat-form-field>
+      <mat-form-field floatLabel='auto' appearance='fill' class="formTitleInput" >
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="fName" required>
+        <mat-error *ngIf="form.get('fName').invalid || !form.valid">Please enter the first name</mat-error>
+        <mat-hint *ngIf="form.get('fName').invalid" style="color: red">Required</mat-hint>
+      </mat-form-field>
+      <mat-form-field floatLabel='auto' appearance='fill' class="formTitleInput" >
+        <mat-label>Surname</mat-label>
+        <input matInput formControlName="lName" required>
+        <mat-error *ngIf="form.get('lName').invalid">Please enter the surname</mat-error>
+        <mat-hint *ngIf="form.get('lName').invalid" style="color: red">Required</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="full-width">
+      <mat-tab-group>
+
+        <!-- Tab for Basic Info -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon >fact_check</mat-icon>
+            Basic Info
+          </ng-template>
+          <div class="tab-content">
+            <div class="tab-content-col1">    <!-- You are in Employee Basic Info Tab - First Column-->
+              <mat-form-field class="on-667-w50">
+                <mat-label>Designation</mat-label>
+                <input matInput formControlName="desig">
+              </mat-form-field>
+              <div>
+                <mat-form-field class="on-667-w50">
+                  <mat-label>Company Email</mat-label>
+                  <input matInput formControlName="coEmail" required>
+                  <mat-hint *ngIf="form.get('coEmail').invalid" style="color: red">Required</mat-hint>
+                  <mat-error *ngIf="form.get('coEmail').invalid">Please enter a valid email address</mat-error>
+                </mat-form-field>
+                <mat-form-field class="on-667-w50">
+                  <mat-label>Personal Email</mat-label>
+                  <input matInput formControlName="personalEmail">
+                  <mat-error *ngIf="form.get('personalEmail').invalid">Please enter a valid email address</mat-error>
+                </mat-form-field>   <!-- You are in Employee Basic Info Tab - First Column-->
+              </div>
+              <div>
+              <mat-form-field >
+                <mat-label>Mobile 1</mat-label>
+                <input matInput formControlName="mobile1" required>
+                <mat-hint *ngIf="form.get('mobile1').invalid" style="color: red">Required</mat-hint>
+                <mat-error *ngIf="form.get('mobile1').invalid">Enter 10-digit mobile number.</mat-error>
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Mobile 2</mat-label>
+                <input matInput formControlName="mobile2">
+                <mat-error *ngIf="form.get('mobile2').invalid">Enter 10-digit mobile number.</mat-error>
+              </mat-form-field>
+            </div>
+              <mat-form-field>     <!-- You are in Employee Basic Info Tab - First Column-->
+                <mat-label>Gender</mat-label>
+                <mat-select matInput formControlName="gender">
+                  <mat-option value='Female'>Female</mat-option>
+                  <mat-option value='Male'>Male</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="DatePicker1"
+                  #dirDscExpDate>
+                <mat-datepicker-toggle matSuffix [for]="DatePicker1"></mat-datepicker-toggle>
+                <mat-datepicker #DatePicker1></mat-datepicker>
+              </mat-form-field> <!-- You are in Employee Basic Info Tab - First Column-->
+
+            </div>
+
+            <div class="tab-content-col2">   <!-- You are in Employee Basic Info Tab - Second Column-->
+              <mat-form-field class="on-667-w50">
+                <mat-label>Qualifications</mat-label>
+                <input matInput formControlName="qualifications">
+              </mat-form-field>
+              <div>
+                <mat-form-field >
+                  <mat-label>Employee Band</mat-label>
+                  <input matInput formControlName="band">
+                </mat-form-field>
+                <mat-form-field >
+                  <mat-label>CTC</mat-label>
+                  <input matInput formControlName="ctc">
+                </mat-form-field>
+              </div>
+              <div>
+              <mat-form-field>
+                <mat-label>Date of Joining</mat-label>
+                <input matInput [matDatepicker]="DatePicker2"  formControlName="dateOfJoining">
+                <mat-datepicker-toggle matSuffix [for]="DatePicker2"></mat-datepicker-toggle>
+                <mat-datepicker #DatePicker2></mat-datepicker>
+              </mat-form-field>   <!-- You are in Employee Basic Info Tab - Second Column-->
+              <mat-form-field>
+                <mat-label>Experience Start Date</mat-label>
+                <input matInput [matDatepicker]="DatePicker3"  formControlName="experienceStartDate">
+                <mat-datepicker-toggle matSuffix [for]="DatePicker3"></mat-datepicker-toggle>
+                <mat-datepicker #DatePicker3></mat-datepicker>
+              </mat-form-field>   <!-- You are in Employee Basic Info Tab - Second Column-->
+            </div>
+              <mat-checkbox color="primary" formControlName="leftCompany"
+              class="mr-1rem">Employee has left our Company</mat-checkbox>
+              <mat-form-field>
+                <mat-label>Date of Leaving</mat-label>
+                <input matInput [matDatepicker]="DatePicker4"  formControlName="dateOfLeaving">
+                <mat-datepicker-toggle matSuffix [for]="DatePicker4"></mat-datepicker-toggle>
+                <mat-datepicker #DatePicker4></mat-datepicker>
+              </mat-form-field>   <!-- You are in Employee Basic Info Tab - Second Column-->
+            </div>
+          </div>
+        </mat-tab>
+
+        <!-- Tab for Personal Info -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon> place</mat-icon>
+            Personal Info
+          </ng-template>
+          <div class="tab-content">
+            <div class="mt-1rem">
+                <div>
+                  <mat-form-field>
+                    <mat-label>PAN</mat-label>
+                    <input matInput formControlName="pan">
+                  </mat-form-field>    <!-- You are in Employee Basic Info Tab - Second Column-->
+                </div>
+                <mat-form-field class="on-667-w50">
+                  <mat-label>Address Line 1</mat-label>
+                  <input matInput formControlName="addr1">
+                </mat-form-field>
+                <mat-form-field class="on-667-w50">
+                  <mat-label>Address Line 2</mat-label>
+                  <input matInput formControlName="addr2">
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>City</mat-label>
+                  <input matInput formControlName="city">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>State</mat-label>
+                  <input matInput formControlName="state">
+                </mat-form-field>
+                <mat-form-field >
+                  <mat-label>Postal Code</mat-label>
+                  <input matInput #postalCode placeholder="400029"  formControlName="pincode">
+                  <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class="on-667-w50">
+                  <mat-label>Emergency Contact Person's Name</mat-label>
+                  <input matInput formControlName="contactPersonName">
+                </mat-form-field>
+                <mat-form-field class="on-667-w50">
+                  <mat-label>Emergency Contact Person's Mobile</mat-label>
+                  <input matInput formControlName="contactPersonMobile">
+                </mat-form-field>
+                <input type="hidden"  formControlName="userName">
+            </div>
+            <div></div> <!-- dummy div to split the screen into two on large screen-->
+          </div>
+        </mat-tab>
+        <!-- END of Tab for Personal Info -->
+      </mat-tab-group>
+    </div>
+    <div class="mt-1rem">
+      <button type="button" mat-raised-button color="primary"
+        class="mr-1rem" (click)="onEmployeeSave()" [disabled]="!form.valid">Save Employee</button>
+      <button type="button" mat-raised-button color="warn" routerLink="/employees"
+      class="mr-1rem">Cancel</button>
+      <button type="button" mat-raised-button color="primary" routerLink="/employees"
+      class="mr-1rem">Employee List</button>
+    </div>
+  </form>
+</div>

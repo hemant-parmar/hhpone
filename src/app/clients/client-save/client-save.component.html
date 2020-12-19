@@ -1,0 +1,584 @@
+<div class="m-1rem">
+  <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+  <form [formGroup]="form">
+    <div class="title">
+      <div class="subTitle mr-1rem" [ngClass]="{redBold: editMode}">
+        {{ titleString }} Client Data for: </div>
+
+      <mat-form-field floatLabel='auto' appearance='fill' class="formTitleInput">
+        <mat-label>Company Name</mat-label>
+        <input  matInput formControlName="compName">
+        <mat-error *ngIf="form.get('compName').invalid">Please enter a Company Name</mat-error>
+        <mat-hint align='start'>Min 3 characters</mat-hint>
+      </mat-form-field>
+
+    </div>
+
+    <div class="full-width">
+      <mat-tab-group>
+
+        <!-- Tab for Basic Info -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon >fact_check</mat-icon>
+            Basic Info
+          </ng-template>
+          <div class="tab-content">
+            <div class="tab-content-col1">
+              <p class="subTitle">Registered Office Address</p>
+              <mat-form-field class="on-667-w50">
+                <mat-label>Address Line 1</mat-label>
+                <input matInput formControlName="addr1">
+              </mat-form-field>
+              <mat-form-field class="on-667-w50">
+                <mat-label>Address Line 2</mat-label>
+                <input matInput formControlName="addr2">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>State</mat-label>
+                <input matInput formControlName="state">
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Postal Code</mat-label>
+                <input matInput #postalCode placeholder="400029"  formControlName="pincode">
+                <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Phone 1</mat-label>
+                <input matInput formControlName="phone1">
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Phone 2</mat-label>
+                <input matInput formControlName="phone2">
+              </mat-form-field>
+            </div>
+
+            <div class="tab-content-col2">
+              <p class="subTitle">General Info</p>
+              <mat-form-field class="on-667-w50">
+                <mat-label>Email Address</mat-label>
+                <input matInput formControlName="email">
+              </mat-form-field>
+              <mat-form-field class="on-667-w50">
+                <mat-label>Website</mat-label>
+                <input matInput formControlName="website">
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Company Category</mat-label>
+                <input matInput formControlName="compCat">
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Company Sub-Category</mat-label>
+                <input matInput formControlName="compSubcat">
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Company Class</mat-label>
+                <input matInput formControlName="compClass">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Date Incorporated</mat-label>
+                <input matInput [matDatepicker]="compDateIncPicker"  formControlName="dateInc">
+                <mat-datepicker-toggle matSuffix [for]="compDateIncPicker"></mat-datepicker-toggle>
+                <mat-datepicker #compDateIncPicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-tab>
+
+        <!-- Tab for Other Addresses -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon> place</mat-icon>
+            Other Addresses
+          </ng-template>
+          <div class="tab-content">
+            <div class="tab-content-col1" formGroupName="corpOffice">
+              <p class="subTitle">Corporate Office Address</p>
+              <p>
+              <mat-form-field>
+                <mat-label>Location Name</mat-label>
+                <input matInput formControlName="locationName">
+              </mat-form-field>
+              </p>
+              <mat-form-field class="on-667-w50">
+                <mat-label>Address Line 1</mat-label>
+                <input matInput formControlName="addr1">
+              </mat-form-field>
+              <mat-form-field class="on-667-w50">
+                <mat-label>Address Line 2</mat-label>
+                <input matInput formControlName="addr2">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>State</mat-label>
+                <input matInput formControlName="state">
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Postal Code</mat-label>
+                <input matInput #postalCode placeholder="400029"  formControlName="pincode">
+                <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+              </mat-form-field>
+
+                <mat-form-field >
+                  <mat-label>Phone 1</mat-label>
+                  <input matInput formControlName="phone1">
+                </mat-form-field>
+                <mat-form-field >
+                  <mat-label>Phone 2</mat-label>
+                  <input matInput formControlName="phone2">
+                </mat-form-field>
+            </div>
+          </div>
+        </mat-tab>
+        <!-- END of Tab for Other Addresses -->
+
+        <!-- Tab for Registered Ids -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon >fiber_pin</mat-icon>
+            Registered IDs
+          </ng-template>
+          <div>
+            <p class="subTitle">Registered IDs</p>
+            <div>
+              <mat-form-field style="margin-right: 1rem;">
+                <mat-label>PAN</mat-label>
+                <input matInput formControlName="PAN">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>GSTN</mat-label>
+                <input matInput formControlName="GSTN">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field style="margin-right: 1rem;">
+                <mat-label>CIN</mat-label>
+                <input matInput formControlName="CIN">
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>LLPIN</mat-label>
+                <input matInput formControlName="LLPIN">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field style="margin-right: 1rem;">
+                <mat-label>ROC</mat-label>
+                <input matInput formControlName="ROC">
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>regNo</mat-label>
+                <input matInput formControlName="regNo">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field >
+                <mat-label>TAN</mat-label>
+                <input matInput formControlName="TAN">
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-tab>
+        <!-- END of Tab for Registered Ids -->
+
+        <!-- Tab for Contacts -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon >people</mat-icon>
+            Contacts
+          </ng-template>
+
+          <!-- Add/update Contact Expansion Panel -->
+          <mat-expansion-panel  class="exp-panel" [(expanded)]="openContExpPanel" #contExpPanel>
+            <mat-expansion-panel-header>
+              <mat-panel-title [ngClass]="{redBold: editingContact}">
+                {{ editingContact ? 'EDITING' : 'ADD' }} A CONTACT <mat-icon>account_circle</mat-icon>
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+            </mat-expansion-panel-header>  <!-- You are in Contacts Exp Panel -->
+
+            <div>  <!-- You are in Contacts Exp Panel -->
+              <input type="hidden" mat-input #contIndex [(value)]= "contValIndex">
+              <mat-form-field class="w-3rem">
+                <mat-label>Title</mat-label>
+                <mat-select matInput #contTitle [(value)]="contValTitle">
+                  <mat-option value='Ms.'>Ms.</mat-option>
+                  <mat-option value='Mr.'>Mr.</mat-option>
+                </mat-select>
+              </mat-form-field>  <!-- You are in Contacts Exp Panel -->
+              <mat-form-field class="w-8rem">
+                <mat-label>First Name</mat-label>
+                <input matInput #contFName [(value)]="contValFName">
+              </mat-form-field>
+              <mat-form-field class="w-8rem">
+                <mat-label>Last Name</mat-label>
+                <input matInput #contLName [(value)]="contValLName">
+              </mat-form-field>  <!-- You are in Contacts Exp Panel -->
+              <mat-form-field class="w-12rem">
+                <mat-label>Designation</mat-label>
+                <input matInput #contDesig [(value)]="contValDesig">
+              </mat-form-field>
+              <mat-form-field class="w-12rem">
+                <mat-label>Email</mat-label>
+                <input matInput #contEmail [(value)]="contValEmail">
+              </mat-form-field>  <!-- You are in Contacts Exp Panel -->
+              <mat-form-field class="w-8rem">
+                <mat-label>Mobile-1</mat-label>
+                <input matInput #contMobile1 [(value)]="contValMobile1">
+              </mat-form-field>
+              <mat-form-field class="w-8rem">
+                <mat-label>Mobile-2</mat-label>
+                <input matInput #contMobile2 [(value)]="contValMobile2">
+              </mat-form-field>  <!-- You are in Contacts Exp Panel -->
+              <div>
+                <button type="button" mat-button color="warn" (click)="onClearContExpPanel()">Clear</button>
+                <button type="button" mat-button color="primary"
+                (click)="onContactSave(contIndex?.value, contTitle.value, contFName.value, contLName.value,
+                contDesig.value, contEmail.value, contMobile1.value, contMobile2.value)">Save</button>
+                <button type="button" mat-button color="warn" (click)="onCancelContExpPanel()">Cancel</button>
+              </div>
+            </div>
+          </mat-expansion-panel>
+          <!-- END of Contacts Exp Panel -->
+
+          <!-- Contacts Table -->
+          <div >
+            <span class="mr-1rem subTitle">Contact List</span>
+            <mat-form-field>
+              <mat-label>Search Contacts</mat-label>
+              <input matInput (keyup)="applyContFilter($event)" placeholder="" #input>
+            </mat-form-field>
+
+            <div class="mat-elevation-z8 table-container">  <!-- You are in Contacts Table -->
+              <table mat-table [dataSource]="contDataSource" matSort #ContTableSort='matSort'>
+
+                <!-- title Column -->
+                <ng-container matColumnDef="title" sticky>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header
+                  class="w-3rem"></th>
+                  <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+                </ng-container>  <!-- You are in Contacts Table -->
+
+                <!-- fName Column -->
+                <ng-container matColumnDef="fName" sticky>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Name </th>
+                  <td mat-cell *matCellDef="let row"> {{row.fName}} </td>
+                </ng-container>
+
+                <!-- lName Column -->
+                <ng-container matColumnDef="lName" sticky>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Surname </th>
+                  <td mat-cell *matCellDef="let row"> {{row.lName}} </td>
+                </ng-container>  <!-- You are in Contacts Table -->
+
+                <!-- Desig Column -->
+                <ng-container matColumnDef="desig">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-12rem"> Designation </th>
+                  <td mat-cell *matCellDef="let row" > {{row.desig}} </td>
+                </ng-container>
+
+                <!-- email Column -->
+                <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-12rem"> Email </th>
+                  <td mat-cell *matCellDef="let row" > {{row.email}} </td>
+                </ng-container>  <!-- You are in Contacts Table -->
+
+                <!-- mobile1 Column -->
+                <ng-container matColumnDef="mobile1">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Mobile-1 </th>
+                  <td mat-cell *matCellDef="let row" > {{row.mobile1}} </td>
+                </ng-container>
+
+                <!-- mobile2 Column -->
+                <ng-container matColumnDef="mobile2">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Mobile-2 </th>
+                  <td mat-cell *matCellDef="let row" > {{row.mobile2}} </td>
+                </ng-container>  <!-- You are in Contacts Table -->
+
+                <!-- delete Column -->
+                <ng-container matColumnDef="delete" [stickyEnd]="true">
+                  <th mat-header-cell *matHeaderCellDef class="w-1rem"></th>
+                  <td mat-cell *matCellDef="let row, let i = index">
+                    <button type="button" mat-icon-button matTooltip="Delete Contact"
+                    matTooltipClass="tooltip-red" (click)="onDeleteContact(i)">
+                      <mat-icon color="warn">delete_outline</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>  <!-- You are in Contacts Table -->
+
+                <!-- edit Column -->
+                <ng-container matColumnDef="edit" [stickyEnd]="true">
+                  <th mat-header-cell *matHeaderCellDef class="w-1rem"></th>
+                  <td mat-cell *matCellDef="let row, let i = index">
+                    <button type="button" mat-icon-button matTooltip="Edit Contact"
+                      (click)="onEditContact(i, row.title, row.fName, row.lName, row.desig, row.email, row.mobile1, row.mobile2)">
+                      <mat-icon color="primary">edit</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>  <!-- You are in Contacts Table -->
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4" style="color: #c71919">No contact found</td>
+                </tr>
+              </table>  <!-- You are in Contacts Table -->
+
+              <mat-paginator [pageSizeOptions]="[5, 10]"
+                #ContTablePaginator='matPaginator'></mat-paginator>
+            </div>  <!-- END of Div for only Cont Table -->
+          </div> <!-- END of Div for Search field + Cont Table -->
+        </mat-tab>
+        <!-- END of Tab for Contacts -->
+
+
+        <!-- Tab for Directors -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon >account_box</mat-icon>
+            Directors
+          </ng-template>
+
+          <!-- Add/update Directors Expansion Panel -->
+          <mat-expansion-panel  class="exp-panel"
+            [(expanded)]="openDirExpPanel" #dirExpPanel>
+            <mat-expansion-panel-header>
+              <mat-panel-title [ngClass]="{redBold: editingDirector}">
+                {{ editingDirector ? 'EDITING' : 'ADD' }} A DIRECTOR
+                <mat-icon style="margin-left: 5px;">account_circle</mat-icon>
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+            </mat-expansion-panel-header>  <!-- You are in Directors Exp Panel -->
+
+            <div >
+              <div >
+                <div>
+                  <input type="hidden" mat-input #dirIndex [(value)]= "dirValIndex">
+                  <mat-form-field class="w-3rem">
+                    <mat-label>Title</mat-label>
+                    <mat-select matInput #dirTitle [(value)]="dirValTitle">
+                      <mat-option value='Ms.'>Ms.</mat-option>
+                      <mat-option value='Mr.'>Mr.</mat-option>
+                    </mat-select>
+                  </mat-form-field> <!-- You are in Directors Exp Panel -->
+                  <mat-form-field class="w-8rem">
+                    <mat-label>First Name</mat-label>
+                    <input matInput #dirFName [(value)]="dirValFName">
+                  </mat-form-field>
+                  <mat-form-field class="w-8rem">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput #dirLName [(value)]="dirValLName">
+                  </mat-form-field>  <!-- You are in Directors Exp Panel -->
+                  <mat-form-field class="w-12rem">
+                    <mat-label>Designation</mat-label>
+                    <input matInput #dirDesig [(value)]="dirValDesig">
+                  </mat-form-field>
+                  <mat-form-field class="w-12rem">
+                    <mat-label>Email</mat-label>
+                    <input matInput #dirEmail [(value)]="dirValEmail">
+                  </mat-form-field>  <!-- You are in Directors Exp Panel -->
+                  <mat-form-field class="w-8rem">
+                    <mat-label>Mobile-1</mat-label>
+                    <input matInput #dirMobile1 [(value)]="dirValMobile1">
+                  </mat-form-field>
+                  <mat-form-field class="w-8rem">
+                    <mat-label>Mobile-2</mat-label>
+                    <input matInput #dirMobile2 [(value)]="dirValMobile2">
+                  </mat-form-field>  <!-- You are in Directors Exp Panel -->
+                </div>
+                <div>
+                  <mat-form-field class="on-667-w50">
+                    <mat-label>Address Line 1</mat-label>
+                    <input matInput #dirAddr1 [(value)]="dirValAddr1">
+                  </mat-form-field>
+                  <mat-form-field class="on-667-w50">  <!-- You are in Directors Exp Panel -->
+                    <mat-label>Address Line 2</mat-label>
+                    <input matInput #dirAddr2 [(value)]="dirValAddr2">
+                  </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label>City</mat-label>
+                      <input matInput matInput #dirCity [(value)]="dirValCity">
+                    </mat-form-field>
+                    <mat-form-field>  <!-- You are in Directors Exp Panel -->
+                      <mat-label>State</mat-label>
+                      <input matInput matInput #dirState [(value)]="dirValState">
+                    </mat-form-field>
+                    <mat-form-field >
+                      <mat-label>Postal Code</mat-label>
+                      <input matInput #postalCode placeholder="400029"
+                        matInput #dirPincode [(value)]="dirValPincode">
+                      <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+                    </mat-form-field>  <!-- You are in Directors Exp Panel -->
+                </div>
+              </div>
+              <div class="mt-1rem">
+                  <mat-form-field class="w-8rem">
+                    <mat-label>Date Appointed</mat-label>
+                    <input matInput [matDatepicker]="dirDatePicker1"
+                      #dirDateAppointed [(value)]="dirValDateAppointed">
+                    <mat-datepicker-toggle matSuffix [for]="dirDatePicker1"></mat-datepicker-toggle>
+                    <mat-datepicker #dirDatePicker1></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field class="w-8rem">
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="dirDatePicker3"
+                      #dirEndDate [(value)]="dirValEndDate">
+                    <mat-datepicker-toggle matSuffix [for]="dirDatePicker3"></mat-datepicker-toggle>
+                    <mat-datepicker #dirDatePicker3></mat-datepicker>
+                  </mat-form-field> <!-- You are in Directors Exp Panel -->
+                  <mat-form-field class="w-8rem">
+                    <mat-label>DIN</mat-label>
+                    <input matInput #dirDin [(value)]="dirValDin">
+                  </mat-form-field>  <!-- You are in Directors Exp Panel -->
+                  <mat-form-field class="w-8rem">
+                    <mat-label>DPIN</mat-label>
+                    <input matInput #dirDpin [(value)]="dirValDpin">
+                  </mat-form-field>
+                  <mat-form-field class="w-8rem">
+                    <mat-label>PAN</mat-label>
+                    <input matInput #dirPan [(value)]="dirValPan">
+                  </mat-form-field>  <!-- You are in Directors Exp Panel -->
+                  <mat-checkbox color="primary" #dirIsDscReg [(checked)]="dirValIsDscReg"
+                  class="mr-1rem">DSC Registered</mat-checkbox>
+
+                  <mat-form-field class="w-8rem">
+                    <mat-label>DSC Expiry Date</mat-label>
+                    <input matInput [matDatepicker]="dirDatePicker2"
+                      #dirDscExpDate [(value)]="dirValDscExpDate">
+                    <mat-datepicker-toggle matSuffix [for]="dirDatePicker2"></mat-datepicker-toggle>
+                    <mat-datepicker #dirDatePicker2></mat-datepicker>
+                  </mat-form-field> <!-- You are in Directors Exp Panel -->
+              </div>
+              <div>
+                <button type="button" mat-button color="warn"
+                  (click)="onClearDirExpPanel()">Clear</button>
+                <button type="button" mat-button color="primary"
+                (click)="onDirectorSave(dirIndex?.value, dirTitle.value, dirFName.value, dirLName.value,
+                dirDesig.value, dirEmail.value, dirMobile1.value, dirMobile2.value, dirDateAppointed.value, dirDin.value, dirDpin.value, dirPan.value, dirIsDscReg.checked, dirDscExpDate.value, dirEndDate.value, dirAddr1.value, dirAddr2.value, dirCity.value, dirState.value,
+                dirPincode.value)">Save</button>
+                <button type="button" mat-button color="warn"
+                  (click)="onCancelDirExpPanel()">Cancel</button>
+              </div>
+
+            </div>
+          </mat-expansion-panel>
+          <!-- END of Directors Exp Panel -->
+
+          <!-- Directors Table -->
+          <div>
+            <span class="mr-1rem subTitle">Directors List</span>
+            <mat-form-field>
+              <mat-label>Search Directors</mat-label>
+              <input matInput (keyup)="applyDirFilter($event)" placeholder="" #input>
+            </mat-form-field>  <!-- You are in Directors Table -->
+
+            <div class="mat-elevation-z8 table-container">
+              <table mat-table [dataSource]="dirDataSource" matSort #DirTableSort='matSort'>
+
+                <!-- title Column -->
+                <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-3rem"></th>
+                  <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+                </ng-container>  <!-- You are in Directors Table -->
+
+                <!-- fName Column -->
+                <ng-container matColumnDef="fName">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Name </th>
+                  <td mat-cell *matCellDef="let row"> {{row.fName}} </td>
+                </ng-container>
+
+                <!-- lName Column -->
+                <ng-container matColumnDef="lName" sticky>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Surname </th>
+                  <td mat-cell *matCellDef="let row"> {{row.lName}} </td>
+                </ng-container>  <!-- You are in Directors Table -->
+
+                <!-- Desig Column -->
+                <ng-container matColumnDef="desig">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-12rem"> Designation </th>
+                  <td mat-cell *matCellDef="let row" > {{row.desig}} </td>
+                </ng-container>
+
+                <!-- email Column -->
+                <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-12rem"> Email </th>
+                  <td mat-cell *matCellDef="let row" > {{row.email}} </td>
+                </ng-container>  <!-- You are in Directors Table -->
+
+                <!-- mobile1 Column -->
+                <ng-container matColumnDef="mobile1">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Mobile-1 </th>
+                  <td mat-cell *matCellDef="let row"> {{row.mobile1}} </td>
+                </ng-container>
+
+                <!-- mobile2 Column -->
+                <ng-container matColumnDef="mobile2">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-8rem"> Mobile-2 </th>
+                  <td mat-cell *matCellDef="let row"> {{row.mobile2}} </td>
+                </ng-container>  <!-- You are in Directors Table -->
+
+                <!-- delete Column -->
+                <ng-container matColumnDef="delete">
+                  <th mat-header-cell *matHeaderCellDef class="w-1rem"></th>
+                  <td mat-cell *matCellDef="let row, let i = index">
+                    <button type="button" mat-icon-button matTooltip="Delete Director"
+                    matTooltipClass="tooltip-red" (click)="onDeleteDirector(i)">
+                      <mat-icon color="warn">delete_outline</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>  <!-- You are in Directors Table -->
+
+                <!-- edit Column -->
+                <ng-container matColumnDef="edit" stickyEnd>
+                  <th mat-header-cell *matHeaderCellDef class="w-1rem"></th>
+                  <td mat-cell *matCellDef="let row, let i = index">
+                    <button type="button" mat-icon-button matTooltip="Edit Director"
+                      (click)="onEditDirector(i, row.title, row.fName, row.lName, row.desig, row.email, row.mobile1, row.mobile2, row.dateAppointed, row.din, row.dpin, row.pan, row.isDscReg, row.dscExpiryDate, row.endDate, row.addr1, row.addr2, row.city, row.state, row.pincode)">
+                      <mat-icon color="primary">edit</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>  <!-- You are in Directors Table -->
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4" style="color: #c71919">No Director found</td>
+                </tr>
+              </table>  <!-- You are in Directors Table -->
+
+              <mat-paginator [pageSizeOptions]="[5, 10]"
+                #DirTablePaginator='matPaginator'></mat-paginator>
+            </div>  <!-- END of Div for only Directors Table -->
+          </div> <!-- END of Div for Search field + Directors Table -->
+        </mat-tab>
+
+      </mat-tab-group>
+    </div>
+    <div class="mt-1rem">
+      <button type="button" mat-raised-button color="primary"
+        class="mr-1rem" (click)="onClientSave()">Save Client</button>
+      &nbsp;
+      <button type="button" mat-raised-button color="warn" routerLink="/"
+      class="mr-1rem">Cancel</button>
+      &nbsp;
+      <button type="button" mat-raised-button color="primary" routerLink="/client/list"
+      >Client List</button>
+    </div>
+  </form>
+</div>
